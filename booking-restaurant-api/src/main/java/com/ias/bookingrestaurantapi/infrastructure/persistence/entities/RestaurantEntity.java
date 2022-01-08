@@ -7,27 +7,71 @@ import java.util.List;
 @Table(name = "restaurant")
 public class RestaurantEntity {
 
-    public RestaurantEntity() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = true)
+    @Column(name = "id", unique = true, nullable = true)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "ADDRESS")
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "IMAGE")
+    @Column(name = "image")
     private String image;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "restaurant")
-    private List<ReservationEntity> reservations;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private List<BoardEntity> boards;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<BoardEntity> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<BoardEntity> boards) {
+        this.boards = boards;
+    }
 }
