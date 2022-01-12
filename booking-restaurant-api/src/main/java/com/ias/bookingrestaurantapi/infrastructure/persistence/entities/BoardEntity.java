@@ -8,7 +8,7 @@ public class BoardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = true)
+    @Column(name = "id", unique = true)
     private Long id;
 
     @Column(name = "capacity")
@@ -18,9 +18,10 @@ public class BoardEntity {
     private int number;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
+
 
     public Long getId() {
         return id;

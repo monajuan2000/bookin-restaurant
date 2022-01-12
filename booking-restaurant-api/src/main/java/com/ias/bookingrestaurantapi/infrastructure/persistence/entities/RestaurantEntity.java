@@ -9,7 +9,7 @@ public class RestaurantEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = true)
+    @Column(name = "id", unique = true)
     private Long id;
 
     @Column(name = "name")
@@ -26,6 +26,12 @@ public class RestaurantEntity {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private List<BoardEntity> boards;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private List<TurnEntity> turns;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private List<ReservationEntity> reservations;
 
     public Long getId() {
         return id;
@@ -73,5 +79,21 @@ public class RestaurantEntity {
 
     public void setBoards(List<BoardEntity> boards) {
         this.boards = boards;
+    }
+
+    public List<TurnEntity> getTurns() {
+        return turns;
+    }
+
+    public void setTurns(List<TurnEntity> turns) {
+        this.turns = turns;
+    }
+
+    public List<ReservationEntity> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<ReservationEntity> reservations) {
+        this.reservations = reservations;
     }
 }
