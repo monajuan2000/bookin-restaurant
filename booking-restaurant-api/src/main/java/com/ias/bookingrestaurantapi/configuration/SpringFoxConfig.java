@@ -15,6 +15,6 @@ public class SpringFoxConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ias.bookingrestaurantapi.aplication.controllers"))
-                .paths(PathSelectors.ant("/api/v1/restaurants/find-all")).build();
+                .paths(PathSelectors.ant("/api/v1/restaurants/**")).build();
     }
 }

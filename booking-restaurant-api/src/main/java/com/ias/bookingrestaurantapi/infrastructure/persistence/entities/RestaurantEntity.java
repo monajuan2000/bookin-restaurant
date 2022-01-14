@@ -1,9 +1,15 @@
 package com.ias.bookingrestaurantapi.infrastructure.persistence.entities;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "restaurant")
 public class RestaurantEntity {
 
@@ -33,67 +39,4 @@ public class RestaurantEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private List<ReservationEntity> reservations;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public List<BoardEntity> getBoards() {
-        return boards;
-    }
-
-    public void setBoards(List<BoardEntity> boards) {
-        this.boards = boards;
-    }
-
-    public List<TurnEntity> getTurns() {
-        return turns;
-    }
-
-    public void setTurns(List<TurnEntity> turns) {
-        this.turns = turns;
-    }
-
-    public List<ReservationEntity> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<ReservationEntity> reservations) {
-        this.reservations = reservations;
-    }
 }

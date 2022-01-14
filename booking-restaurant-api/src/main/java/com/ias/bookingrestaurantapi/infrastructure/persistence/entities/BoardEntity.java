@@ -1,8 +1,15 @@
 package com.ias.bookingrestaurantapi.infrastructure.persistence.entities;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+
 @Entity
+@Getter
+@Setter
 @Table(name = "board")
 public class BoardEntity {
 
@@ -22,36 +29,4 @@ public class BoardEntity {
     @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public RestaurantEntity getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(RestaurantEntity restaurant) {
-        this.restaurant = restaurant;
-    }
 }
