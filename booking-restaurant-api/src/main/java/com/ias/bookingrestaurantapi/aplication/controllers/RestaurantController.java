@@ -18,4 +18,5 @@ public class RestaurantController {
     public List<RestaurantModel> findAllRestaurants(){
         return restaurantService.findAllRestaurants();
     }
+
 }

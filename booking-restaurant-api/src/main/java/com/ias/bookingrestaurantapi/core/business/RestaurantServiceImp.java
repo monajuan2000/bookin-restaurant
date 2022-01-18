@@ -16,7 +16,7 @@ public class RestaurantServiceImp extends RestaurantMapper implements Restaurant
     RestaurantRepository restaurantRepository;
 
     public List<RestaurantModel> findAllRestaurants() {
-       List<RestaurantEntity> restaurantEntities = this.restaurantRepository.findAllRestaurants();
+       final List<RestaurantEntity> restaurantEntities = this.restaurantRepository.findAllRestaurants();
        return this.convertToModels(restaurantEntities);
     }
 }
