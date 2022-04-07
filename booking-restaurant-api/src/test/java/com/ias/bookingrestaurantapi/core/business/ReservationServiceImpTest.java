@@ -52,4 +52,12 @@ class ReservationServiceImpTest {
         );
 
     }
+
+    @Test
+    @DisplayName("test fot method deleteReservation")
+    void deleteReservation() throws NotFoundException {
+        this.reservationServiceImp.deleteReservation(5L);
+        assertAll(
+                ()-> assertThrows(NotFoundException.class,()-> System.out.println("test")));
+    }
 }

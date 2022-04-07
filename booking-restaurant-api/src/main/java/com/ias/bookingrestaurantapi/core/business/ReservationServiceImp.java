@@ -38,7 +38,8 @@ public class ReservationServiceImp extends ReservationMapper implements Reservat
     @Override
     public void createReservation(ReservationCreateModel reservationModel) throws NotFoundException {
         ReservationEntity reservationEntity = this.convertToEntity(reservationModel);
-        this.assignRestaurant(reservationModel,reservationEntity);this.assignTurn(reservationModel,reservationEntity);
+        this.assignRestaurant(reservationModel, reservationEntity);
+        this.assignTurn(reservationModel, reservationEntity);
         this.assignLocator(reservationModel, reservationEntity);
         this.reservationRepository.save(reservationEntity);
     }
@@ -52,15 +53,33 @@ public class ReservationServiceImp extends ReservationMapper implements Reservat
     public void updateReservation(ReservationModel reservationModel) {
 
     }
+
+    @Override
+    public String deleteReservation(Long id)  {
+        String message = "";
+        try{
+            this.reservationRepository.findById(id)
+                    .orElseThrow(()-> new NotFoundException("RESERVATION_NOT_FOUND"));
+            this.reservationRepository.deleteById(id);
+            message = "RESERVATION_DELETE_SUCCESS";
+        }catch (NotFoundException e){
+            e.printStackTrace();
+            message = "RESERVATION_DELETE_ERROR";
+        }
+        return message;
+    }
+
     private void assignRestaurant(ReservationCreateModel reservationModel, ReservationEntity reservationEntity) throws NotFoundException {
         RestaurantEntity restaurantEntity = this.restaurantRepository.
                 findById(reservationModel.getRestaurantId()).orElseThrow(() -> new NotFoundException("RESTAURANT_NOT_FOUND"));
         reservationEntity.setRestaurant(restaurantEntity);
     }
-    private void assignLocator(ReservationCreateModel reservationModel, ReservationEntity reservationEntity){
+
+    private void assignLocator(ReservationCreateModel reservationModel, ReservationEntity reservationEntity) {
         String locator = reservationEntity.getRestaurant().getName() + reservationModel.getTurnId();
         reservationEntity.setLocator(locator);
     }
+
     private void assignTurn(ReservationCreateModel reservationModel, ReservationEntity reservationEntity) throws NotFoundException {
         TurnEntity turnEntity = this.turnRepository.
                 findById(reservationModel.getTurnId()).orElseThrow(() -> new NotFoundException("TURN_NOT_FOUND"));

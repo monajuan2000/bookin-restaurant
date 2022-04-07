@@ -12,4 +12,5 @@ public interface ReservationService {
     void createReservation(ReservationCreateModel reservationModel) throws NotFoundException;
     void findById(Long id);
     void updateReservation(ReservationModel reservationModel);
+    String deleteReservation(Long id) throws NotFoundException;
 }
